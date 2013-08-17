@@ -1,9 +1,9 @@
-package controllers;
+package pl.jagm.yata.controllers;
 
 import play.*;
 import play.mvc.*;
 
-import views.html.*;
+import pl.jagm.yata.views.html.*;
 
 public class Application extends Controller {
   
