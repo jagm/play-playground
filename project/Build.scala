@@ -11,11 +11,23 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+
+    "uk.co.panaxiom" %% "play-jongo" % "0.4"
+
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+        resolvers += Resolver.url("My GitHub Play Repository", url("http://alexanderjarvis.github.com/releases/"))(Resolver.ivyStylePatterns),
+
+        /* workaround for run tests */
+        testOptions in Test ~= { args =>
+            for {
+                arg <- args
+                val ta: Tests.Argument = arg.asInstanceOf[Tests.Argument]
+                val newArg = if(ta.framework == Some(TestFrameworks.JUnit)) ta.copy(args = List.empty[String]) else ta
+            } yield newArg
+        }
   )
 
 }
