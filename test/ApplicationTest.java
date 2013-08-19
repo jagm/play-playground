@@ -6,6 +6,7 @@ import java.util.Map;
 import org.codehaus.jackson.JsonNode;
 import org.junit.*;
 
+import pl.jagm.yata.models.Task;
 import play.mvc.*;
 import play.test.*;
 import play.data.DynamicForm;
@@ -32,13 +33,20 @@ public class ApplicationTest {
         int a = 1 + 1;
         assertThat(a).isEqualTo(2);
     }
-    
+
     @Test
+    public void saveTest() {
+        start(fakeApplication(fakeGlobal()));
+        Task t = Task.findById("52126b77bf173e4a950216af");
+        System.out.println(t);
+    }
+    
+    /*@Test
     public void renderTemplate() {
         Content html = views.html.index.render("Your new application is ready.");
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("Your new application is ready.");
-    }
+    }*/
   
    
 }
